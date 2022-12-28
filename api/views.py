@@ -24,3 +24,21 @@ def login(request):
         return Response({"status": "success", "token": token.key}, status=200)
     else:
         return Response({"status": "fail"}, status=401)
+
+@api_view(["POST"])
+def logout(request):
+    request.user.auth_token.delete()
+    return Response(status=204)
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+@authentication_classes([])
+def bed_search(request):
+    token = request.data.get("token")
+    bed = request.data.get("bed")
+    try:
+        token = Token.objects.get(key=token)
+        return Response({"status": "success", "bed": bed}, status=200)
+    except:
+        return Response({"status": "fail"}, status=401)
+        

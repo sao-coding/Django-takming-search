@@ -23,4 +23,6 @@ urlpatterns = [
     path("api-auth/", include('rest_framework.urls')),
     path("api/", views.api),
     path("api/login/", views.login),
+    path("api/logout/", views.logout),
+    path("api/bed_search/", views.bed_search),
 ]
