@@ -33,6 +33,17 @@ def logout(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 @authentication_classes([])
+def authtoken(request):
+    token = request.headers.get("Authorization")
+    try:
+        token = Token.objects.get(key=token)
+        return Response({"status": "success"}, status=200)
+    except:
+        return Response({"status": "fail"}, status=401)
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+@authentication_classes([])
 def bed_search(request):
     token = request.data.get("token")
     bed = request.data.get("bed")

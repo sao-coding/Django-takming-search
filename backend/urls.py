@@ -24,5 +24,6 @@ urlpatterns = [
     path("api/", views.api),
     path("api/login/", views.login),
     path("api/logout/", views.logout),
+    path("api/authtoken/", views.authtoken),
     path("api/bed_search/", views.bed_search),
 ]
